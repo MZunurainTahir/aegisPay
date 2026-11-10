@@ -1,0 +1,31 @@
+{
+  "invoices": [
+    {
+      "customer": "Alice Chen",
+      "id": "INV2-HPK6-PCPR-8S49-APLN"
+    },
+    {
+      "customer": "Bob Martinez",
+      "id": "INV2-3JHX-VVZF-R5GU-WK5D"
+    },
+    {
+      "customer": "Carol Singh",
+      "id": "INV2-DBBF-7FQP-EXUB-E2WM"
+    },
+    {
+      "customer": "Dave Kim",
+      "id": "INV2-P3Z8-LDUE-SAKU-UBQ9"
+    },
+    {
+      "customer": "Eve Thompson",
+      "id": "INV2-2BPK-UUKC-HLYW-NY4W"
+    }
+  ],
+  "seed_order": {
+    "order_id": "0Y88670703107111M",
+    "approve_url": "https://www.sandbox.paypal.com/checkoutnow?token=0Y88670703107111M",
+    "amount": 100.0
+  },
+  "capture_ids": [],
+  "note": "To complete seeding: approve the order above with your sandbox Personal account, then run: python -m demo.capture_order <order_id>"
+}
