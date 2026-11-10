@@ -1,0 +1,41 @@
+# Environment & secrets
+.env
+*.env
+
+# Virtual environments
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+
+# Databases
+*.db
+*.sqlite3
+
+# Node
+node_modules/
+.next/
+out/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# ML models (committed explicitly)
+# gateway/ml/model.joblib  <- intentionally committed
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+

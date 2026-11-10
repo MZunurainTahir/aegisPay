@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: aegis-gateway
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn gateway.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_SECRET
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: CORS_ORIGINS
+        value: https://aegis-dashboard.onrender.com
+      - key: DB_PATH
+        value: /data/aegis.db
+
+  - type: web
+    name: aegis-dashboard
+    runtime: node
+    rootDir: dashboard
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NEXT_PUBLIC_GATEWAY_URL
+        value: https://aegis-gateway.onrender.com
+
