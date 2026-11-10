@@ -2,6 +2,9 @@
 
 **Tagline:** A risk-governed AI CFO for small businesses and freelancers, built on a reusable guardrail layer for any agent that touches PayPal.
 
+**Live Demo URL:** https://aegis-pay-seven.vercel.app  
+**GitHub Repository:** https://github.com/MZunurainTahir/aegisPay  
+
 **Target Tracks:**
 - PayPal AI Track: Best Use of PayPal + AI
 - Agentic Commerce Track: Best Use of Agentic Commerce
