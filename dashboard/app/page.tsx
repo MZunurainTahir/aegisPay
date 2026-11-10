@@ -11,7 +11,8 @@ import {
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const GW = process.env.NEXT_PUBLIC_GATEWAY_URL || "http://localhost:8000";
+// GW = "" means all API calls use relative paths → /api/... → Vercel serverless route
+const GW = "";
 
 interface AuditRow {
   id: number;
