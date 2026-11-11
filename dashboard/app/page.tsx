@@ -542,7 +542,7 @@ export default function Home() {
         </div>
 
         {/* Human-In-The-Loop Approval Inbox */}
-        {pendingRows.length > 0 && (
+        {pendingRows.length > 0 ? (
           <div className="bg-amber-950/20 rounded-2xl border border-amber-800/60 p-5 shadow-lg">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
@@ -623,6 +623,23 @@ export default function Home() {
                 );
               })}
             </div>
+          </div>
+        ) : (
+          <div className="bg-slate-900/90 rounded-2xl border border-slate-800 p-4 flex flex-wrap items-center justify-between gap-3 shadow-sm">
+            <div className="flex items-center gap-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+              <div>
+                <span className="text-xs font-bold text-slate-200">Human-in-the-Loop Approval Queue</span>
+                <span className="text-xs text-slate-400 ml-2">— All pending actions resolved. High-value or elevated risk actions (&gt;$50) queue here automatically.</span>
+              </div>
+            </div>
+            <button
+              onClick={() => runAgent("Refund Bob $400, he is very upset")}
+              className="px-3.5 py-1.5 bg-amber-950/70 hover:bg-amber-900/80 text-amber-300 border border-amber-700/60 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5"
+            >
+              <span>+</span>
+              <span>Queue $400 Approval Demo</span>
+            </button>
           </div>
         )}
 
@@ -882,6 +899,7 @@ export default function Home() {
               }}
               pagination={true}
               paginationPageSize={20}
+              paginationPageSizeSelector={[10, 20, 50]}
               animateRows={true}
             />
           </div>

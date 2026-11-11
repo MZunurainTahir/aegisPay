@@ -56,8 +56,8 @@ interface Mandate {
 
 const _mandate: Mandate = {
   allowed_actions: ["send_reminder", "refund", "flag_dispute", "list_invoices", "list_disputes"],
-  max_per_txn: 100.0,
-  daily_budget: 500.0,
+  max_per_txn: 500.0,
+  daily_budget: 1000.0,
   approval_above: 50.0,
   risk_threshold: 0.7,
   blocked_customers: [],
@@ -209,8 +209,19 @@ async function runAgentSimulated(goal: string): Promise<string> {
   } else if (lower.includes("refund")) {
     const amtMatch = goal.match(/\$?(\d+(?:\.\d+)?)/);
     const amount = amtMatch ? parseFloat(amtMatch[1]) : 30;
-    const custMatch = goal.match(/\b([A-Z][a-z]+)\b/);
-    const customer = custMatch ? `${custMatch[1].toLowerCase()}@example.com` : "customer@example.com";
+    
+    // Extract customer, ignoring common command words
+    const words = goal.match(/\b([A-Z][a-z]+)\b/g) || [];
+    const ignoreWords = new Set(["Refund", "Payment", "Issue", "Send", "Please", "The", "For", "Invoice", "Chase"]);
+    const candidate = words.find((w) => !ignoreWords.has(w));
+    const customer = candidate
+      ? `${candidate.toLowerCase()}@example.com`
+      : lower.includes("alice")
+      ? "alice@acmecorp.com"
+      : lower.includes("bob")
+      ? "bob@startup.io"
+      : "customer@example.com";
+
     const history = { is_new: false, refunds_30d: 1 };
     const risk = riskScore(amount, history);
     const { decision, reason } = policyDecide("refund", amount, customer, getSpentToday());
